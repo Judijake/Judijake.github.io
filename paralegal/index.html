@@ -1,24 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Judi Jakubowski — Paralegal</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Georgia, serif; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #222; }
-    h1 { margin-bottom: 0; }
-    h2 { margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
-    .tagline { color: #666; margin-top: 4px; }
-    a { color: #1a4d8c; }
-    .sample { margin-bottom: 20px; }
-    .sample-title { font-weight: bold; }
-    .download { display: inline-block; margin-top: 8px; padding: 8px 14px; background: #1a4d8c; color: white; text-decoration: none; border-radius: 4px; font-size: 0.95em; }
-    .download:hover { background: #0f3a6e; }
-    .note { color: #666; font-style: italic; font-size: 0.95em; }
+    :root {
+      --bg: #faf8f3;
+      --bg-card: #ffffff;
+      --text: #2a2a2a;
+      --text-muted: #6b6b6b;
+      --accent: #1a4d8c;
+      --accent-soft: #b8860b;
+      --border: #e8e4dc;
+      --shadow: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    [data-theme="dark"] {
+      --bg: #0f1419;
+      --bg-card: #1a2028;
+      --text: #e8e6e1;
+      --text-muted: #9ca0a6;
+      --accent: #7eb3e8;
+      --accent-soft: #d4a85a;
+      --border: #2a3340;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.3s ease, color 0.3s ease;
+      font-weight: 400;
+      font-size: 16px;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+    .header { text-align: center; padding: 20px 0 40px; }
+    .headshot {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg-card);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 38px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .tagline {
+      color: var(--text-muted);
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 0;
+      font-weight: 500;
+    }
+    .accent-line {
+      width: 60px;
+      height: 2px;
+      background: var(--accent-soft);
+      margin: 24px auto;
+    }
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-top: 56px;
+      margin-bottom: 8px;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--accent-soft);
+      margin-top: 10px;
+    }
+    .note {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 14.5px;
+      margin: 16px 0 28px;
+    }
+    p { margin: 12px 0; }
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-soft); }
+    .sample {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.25s ease;
+    }
+    .sample:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+      border-color: var(--accent-soft);
+    }
+    .sample-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 8px;
+    }
+    .sample p { margin: 0; font-size: 15px; color: var(--text); }
+    .download {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(26, 77, 140, 0.2);
+    }
+    .download:hover {
+      background: var(--accent-soft);
+      color: #ffffff !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(184, 134, 11, 0.3);
+    }
+    .credentials, .contact-line {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    @media (max-width: 600px) {
+      body { padding: 30px 18px 60px; }
+      h1 { font-size: 30px; }
+      h2 { font-size: 22px; }
+      .headshot { width: 120px; height: 120px; }
+      .theme-toggle { width: 40px; height: 40px; top: 14px; right: 14px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Judi Jakubowski</h1>
-  <p class="tagline">Paralegal &bull; Contract Review &amp; Compliance &bull; Charlotte, NC</p>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" id="themeBtn">🌙</button>
+
+  <div class="header">
+    <img src="../headshot.jpg" alt="Judi Jakubowski" class="headshot">
+    <h1>Judi Jakubowski</h1>
+    <p class="tagline">Paralegal &bull; Contract Review &amp; Compliance &bull; Charlotte, NC</p>
+    <div class="accent-line"></div>
+  </div>
 
   <h2>About</h2>
   <p>Paralegal Certificate candidate at UNC Charlotte (expected July 2026) and Anne Spychala Family Charitable Foundation Merit Scholar, bringing nearly 30 years of legal-adjacent enterprise experience to a focused legal career. My background centers on contract review and lifecycle management, regulated compliance documentation, cross-functional approval workflows, and the disciplined records management that supports audit readiness in highly regulated environments.</p>
@@ -44,13 +208,37 @@
 
   <a class="download" href="Jakubowski_Paralegal_Work_Samples.pdf">Download Full Portfolio (PDF)</a>
 
+  <h2>Writing</h2>
+  <p class="note">I write a blog called The Reinvention Files — notes from the in-between of a career transition, including the work of building a second career in legal practice. Subscribe on Substack to get new episodes in your inbox.</p>
+
+  <div class="sample">
+    <p class="sample-title">Episode 1 — Welcome to The Reinvention Files</p>
+    <p>I did something I've never done before. I created my own website. Then someone asked if I had a blog. So here we are. <a href="https://judithjakubowski.substack.com/p/welcome-to-the-reinvention-files">Read on Substack →</a></p>
+  </div>
+
+  <a class="download" href="https://judithjakubowski.substack.com">Subscribe to The Reinvention Files</a>
+
   <h2>Credentials</h2>
-  <p>Paralegal Certificate candidate, UNC Charlotte (Est. July 2026) &bull; Anne Spychala Family Charitable Foundation Merit Scholar &bull; MBA, Monmouth University &bull; B.E. Electrical Engineering, Stevens Institute of Technology</p>
+  <p class="credentials">Paralegal Certificate candidate, UNC Charlotte (Est. July 2026) &bull; Anne Spychala Family Charitable Foundation Merit Scholar &bull; MBA, Monmouth University &bull; B.E. Electrical Engineering, Stevens Institute of Technology</p>
 
   <h2>Coursework</h2>
-  <p>Legal Ethics (NC RPC, ABA Model Rules) &bull; Civil Procedure (FRCP and NC Rules) &bull; Legal Writing &bull; Wills and Estates (NC intestate succession, probate, trusts) &bull; Legal Technology (Clio, Odyssey File &amp; Serve, NC eCourts, LexisNexis) &bull; American Jurisprudence</p>
+  <p class="credentials">Legal Ethics (NC RPC, ABA Model Rules) &bull; Civil Procedure (FRCP and NC Rules) &bull; Legal Writing &bull; Wills and Estates (NC intestate succession, probate, trusts) &bull; Legal Technology (Clio, Odyssey File &amp; Serve, NC eCourts, LexisNexis) &bull; American Jurisprudence</p>
 
   <h2>Contact</h2>
-  <p><a href="https://www.linkedin.com/in/judith-a-jakubowski">LinkedIn</a> &bull; judithjakubowski@sbcglobal.net</p>
+  <p class="contact-line"><a href="https://www.linkedin.com/in/judith-a-jakubowski">LinkedIn</a> &bull; judithjakubowski@sbcglobal.net</p>
+
+  <script>
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.getElementById('themeBtn').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+  </script>
 </body>
 </html>
