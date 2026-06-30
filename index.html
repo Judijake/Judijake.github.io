@@ -18,11 +18,15 @@
       --border: #e8e4dc;
       --shadow: 0 2px 8px rgba(0,0,0,0.04);
       --shadow-hover: 0 8px 24px rgba(0,0,0,0.08);
-      --constellation-bg: #f4f1ea;
-      --node-fill: #1a4d8c;
-      --node-glow: rgba(184, 134, 11, 0.4);
-      --line-color: rgba(26, 77, 140, 0.15);
-      --line-active: rgba(184, 134, 11, 0.6);
+      --constellation-bg: #0a1228;
+      --constellation-bg-gradient: radial-gradient(ellipse at center, #142348 0%, #0a1228 70%, #050918 100%);
+      --node-fill: #f4d27a;
+      --node-glow: rgba(244, 210, 122, 0.5);
+      --line-color: rgba(244, 210, 122, 0.25);
+      --line-active: rgba(255, 230, 150, 0.85);
+      --cluster-label-color: #d4c193;
+      --node-label-color: #f4ecd8;
+      --starfield-color: rgba(244, 210, 122, 0.4);
     }
     [data-theme="dark"] {
       --bg: #0f1419;
@@ -34,11 +38,15 @@
       --border: #2a3340;
       --shadow: 0 2px 8px rgba(0,0,0,0.3);
       --shadow-hover: 0 8px 24px rgba(0,0,0,0.4);
-      --constellation-bg: #0a0f15;
-      --node-fill: #d4a85a;
-      --node-glow: rgba(212, 168, 90, 0.6);
-      --line-color: rgba(126, 179, 232, 0.2);
-      --line-active: rgba(212, 168, 90, 0.7);
+      --constellation-bg: #050810;
+      --constellation-bg-gradient: radial-gradient(ellipse at center, #0e1830 0%, #050810 70%, #020308 100%);
+      --node-fill: #f4d27a;
+      --node-glow: rgba(244, 210, 122, 0.6);
+      --line-color: rgba(244, 210, 122, 0.22);
+      --line-active: rgba(255, 230, 150, 0.85);
+      --cluster-label-color: #d4c193;
+      --node-label-color: #f4ecd8;
+      --starfield-color: rgba(244, 210, 122, 0.35);
     }
     * { box-sizing: border-box; }
     body {
@@ -119,11 +127,11 @@
     }
     .constellation-container {
       position: relative;
-      background: var(--constellation-bg);
+      background: var(--constellation-bg-gradient), var(--constellation-bg);
       border-radius: 16px;
       padding: 24px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(10, 18, 40, 0.25), 0 2px 8px rgba(0,0,0,0.1);
+      border: 1px solid rgba(244, 210, 122, 0.12);
       transition: background 0.3s ease;
       overflow: hidden;
     }
@@ -131,15 +139,34 @@
       width: 100%;
       height: 560px;
       display: block;
+      position: relative;
+      z-index: 2;
     }
+    .starfield {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .star {
+      position: absolute;
+      background: var(--starfield-color);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+    .star.twinkle { animation: twinkle 4s ease-in-out infinite; }
     .cluster-label {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 13px;
       font-weight: 600;
-      fill: var(--text-muted);
-      letter-spacing: 1px;
+      fill: var(--cluster-label-color);
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      opacity: 0.55;
+      opacity: 0.7;
       pointer-events: none;
       user-select: none;
     }
@@ -147,6 +174,7 @@
     .node-circle {
       fill: var(--node-fill);
       transition: all 0.3s ease;
+      filter: drop-shadow(0 0 4px var(--node-glow));
     }
     .node-glow {
       fill: var(--node-glow);
@@ -154,7 +182,7 @@
       transition: opacity 0.3s ease;
     }
     .node-label {
-      fill: var(--text);
+      fill: var(--node-label-color);
       font-size: 11px;
       font-weight: 500;
       text-anchor: middle;
@@ -165,7 +193,7 @@
     }
     .node-group:hover .node-circle { transform: scale(1.4); transform-origin: center; }
     .node-group:hover .node-glow { opacity: 1; }
-    .node-group:hover .node-label { font-weight: 600; opacity: 1; }
+    .node-group:hover .node-label { font-weight: 600; opacity: 1; fill: #ffffff; }
     .connection-line {
       stroke: var(--line-color);
       stroke-width: 1;
@@ -182,7 +210,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 14px 18px;
-      box-shadow: var(--shadow-hover);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
       max-width: 280px;
       pointer-events: none;
       opacity: 0;
@@ -220,7 +248,7 @@
       letter-spacing: 0.5px;
     }
     .legend-item { display: flex; align-items: center; gap: 6px; }
-    .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--node-fill); opacity: 0.8; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: #b8860b; opacity: 0.9; }
     h2 {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 26px;
@@ -317,6 +345,7 @@
   <div class="constellation-section">
     <p class="constellation-intro">A constellation of capabilities developed across three decades. Hover any node to explore.</p>
     <div class="constellation-container" id="constellationContainer">
+      <div class="starfield" id="starfield"></div>
       <svg class="constellation-svg" id="constellationSvg" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="node-popup" id="nodePopup">
         <div class="popup-cluster" id="popupCluster"></div>
@@ -390,6 +419,21 @@
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Create starfield background
+    const starfield = document.getElementById('starfield');
+    const starCount = 60;
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star' + (Math.random() > 0.5 ? ' twinkle' : '');
+      const size = Math.random() * 2 + 1;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.left = (Math.random() * 100) + '%';
+      star.style.top = (Math.random() * 100) + '%';
+      star.style.animationDelay = (Math.random() * 4) + 's';
+      starfield.appendChild(star);
     }
 
     const nodes = [
