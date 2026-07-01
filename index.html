@@ -27,6 +27,12 @@
       --cluster-label-color: #d4c193;
       --node-label-color: #f4ecd8;
       --starfield-color: rgba(244, 210, 122, 0.4);
+      --timeline-line: rgba(184, 134, 11, 0.35);
+      --timeline-card-bg: #ffffff;
+      --timeline-card-border: #e8e4dc;
+      --timeline-dot: #b8860b;
+      --timeline-you-bg: #fdf6e3;
+      --timeline-you-border: #b8860b;
     }
     [data-theme="dark"] {
       --bg: #0f1419;
@@ -47,6 +53,12 @@
       --cluster-label-color: #d4c193;
       --node-label-color: #f4ecd8;
       --starfield-color: rgba(244, 210, 122, 0.35);
+      --timeline-line: rgba(212, 168, 90, 0.35);
+      --timeline-card-bg: #1a2028;
+      --timeline-card-border: #2a3340;
+      --timeline-dot: #d4a85a;
+      --timeline-you-bg: #2a2416;
+      --timeline-you-border: #d4a85a;
     }
     * { box-sizing: border-box; }
     body {
@@ -83,240 +95,253 @@
     .content-wrap { max-width: 760px; margin: 0 auto; }
     .header { text-align: center; padding: 20px 0 40px; }
     .headshot {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--bg-card);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-      margin-bottom: 24px;
+      width: 140px; height: 140px; border-radius: 50%;
+      object-fit: cover; border: 3px solid var(--bg-card);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12); margin-bottom: 24px;
     }
     h1 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 38px;
-      font-weight: 700;
-      margin: 0 0 8px;
-      letter-spacing: -0.5px;
-      color: var(--text);
+      font-size: 38px; font-weight: 700;
+      margin: 0 0 8px; letter-spacing: -0.5px; color: var(--text);
     }
     .tagline {
-      color: var(--text-muted);
-      font-size: 15px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin: 0;
-      font-weight: 500;
+      color: var(--text-muted); font-size: 15px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      margin: 0; font-weight: 500;
     }
     .accent-line {
-      width: 60px;
-      height: 2px;
-      background: var(--accent-soft);
-      margin: 24px auto;
+      width: 60px; height: 2px; background: var(--accent-soft); margin: 24px auto;
     }
-    .constellation-section {
-      margin: 20px auto 60px;
-      max-width: 920px;
-    }
+
+    /* CONSTELLATION */
+    .constellation-section { margin: 20px auto 60px; max-width: 920px; }
     .constellation-intro {
-      text-align: center;
-      max-width: 620px;
-      margin: 0 auto 24px;
-      color: var(--text-muted);
-      font-size: 15px;
-      font-style: italic;
+      text-align: center; max-width: 620px; margin: 0 auto 24px;
+      color: var(--text-muted); font-size: 15px; font-style: italic;
     }
     .constellation-container {
       position: relative;
       background: var(--constellation-bg-gradient), var(--constellation-bg);
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: 16px; padding: 24px;
       box-shadow: 0 8px 32px rgba(10, 18, 40, 0.25), 0 2px 8px rgba(0,0,0,0.1);
       border: 1px solid rgba(244, 210, 122, 0.12);
-      transition: background 0.3s ease;
-      overflow: hidden;
+      transition: background 0.3s ease; overflow: hidden;
     }
-    .constellation-svg {
-      width: 100%;
-      height: 560px;
-      display: block;
-      position: relative;
-      z-index: 2;
-    }
-    .starfield {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .star {
-      position: absolute;
-      background: var(--starfield-color);
-      border-radius: 50%;
-      opacity: 0.6;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
-    }
+    .constellation-svg { width: 100%; height: 560px; display: block; position: relative; z-index: 2; }
+    .starfield { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 1; }
+    .star { position: absolute; background: var(--starfield-color); border-radius: 50%; opacity: 0.6; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
     .star.twinkle { animation: twinkle 4s ease-in-out infinite; }
     .cluster-label {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 13px;
-      font-weight: 600;
-      fill: var(--cluster-label-color);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      opacity: 0.7;
-      pointer-events: none;
-      user-select: none;
+      font-size: 13px; font-weight: 600; fill: var(--cluster-label-color);
+      letter-spacing: 1.5px; text-transform: uppercase;
+      opacity: 0.7; pointer-events: none; user-select: none;
     }
     .node-group { cursor: pointer; }
-    .node-circle {
-      fill: var(--node-fill);
-      transition: all 0.3s ease;
-      filter: drop-shadow(0 0 4px var(--node-glow));
-    }
-    .node-glow {
-      fill: var(--node-glow);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+    .node-circle { fill: var(--node-fill); transition: all 0.3s ease; filter: drop-shadow(0 0 4px var(--node-glow)); }
+    .node-glow { fill: var(--node-glow); opacity: 0; transition: opacity 0.3s ease; }
     .node-label {
-      fill: var(--node-label-color);
-      font-size: 11px;
-      font-weight: 500;
-      text-anchor: middle;
-      pointer-events: none;
-      user-select: none;
-      transition: all 0.3s ease;
-      opacity: 0.85;
+      fill: var(--node-label-color); font-size: 11px; font-weight: 500;
+      text-anchor: middle; pointer-events: none; user-select: none;
+      transition: all 0.3s ease; opacity: 0.85;
     }
     .node-group:hover .node-circle { transform: scale(1.4); transform-origin: center; }
     .node-group:hover .node-glow { opacity: 1; }
     .node-group:hover .node-label { font-weight: 600; opacity: 1; fill: #ffffff; }
-    .connection-line {
-      stroke: var(--line-color);
-      stroke-width: 1;
-      fill: none;
-      transition: stroke 0.3s ease, stroke-width 0.3s ease;
-    }
-    .connection-line.active {
-      stroke: var(--line-active);
-      stroke-width: 1.5;
-    }
+    .connection-line { stroke: var(--line-color); stroke-width: 1; fill: none; transition: stroke 0.3s ease, stroke-width 0.3s ease; }
+    .connection-line.active { stroke: var(--line-active); stroke-width: 1.5; }
     .node-popup {
-      position: absolute;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 18px;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-      max-width: 280px;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(8px);
+      position: absolute; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 18px; box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+      max-width: 280px; pointer-events: none;
+      opacity: 0; transform: translateY(8px);
       transition: opacity 0.2s ease, transform 0.2s ease;
-      z-index: 50;
-      font-size: 13.5px;
-      line-height: 1.5;
+      z-index: 50; font-size: 13.5px; line-height: 1.5;
     }
     .node-popup.visible { opacity: 1; transform: translateY(0); }
-    .popup-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-    .popup-cluster {
-      font-size: 11px;
-      color: var(--accent-soft);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
+    .popup-title { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+    .popup-cluster { font-size: 11px; color: var(--accent-soft); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; margin-bottom: 6px; }
     .popup-body { color: var(--text); }
-    .constellation-legend {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px 22px;
-      margin-top: 20px;
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.5px;
-    }
+    .constellation-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 22px; margin-top: 20px; font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; }
     .legend-item { display: flex; align-items: center; gap: 6px; }
     .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: #b8860b; opacity: 0.9; }
-    h2 {
+
+    /* TIMELINE */
+    .timeline-section {
+      margin: 20px auto 80px;
+      max-width: 900px;
+    }
+    .timeline-intro {
+      text-align: center; max-width: 620px; margin: 0 auto 40px;
+      color: var(--text-muted); font-size: 15px; font-style: italic;
+    }
+    .timeline-container {
+      position: relative;
+      padding: 20px 0;
+    }
+    .timeline-line-vertical {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent 0%, var(--timeline-line) 8%, var(--timeline-line) 92%, transparent 100%);
+      transform: translateX(-50%);
+    }
+    .timeline-entry {
+      position: relative;
+      width: 50%;
+      padding: 18px 40px 18px 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .timeline-entry.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .timeline-entry.right {
+      margin-left: 50%;
+      padding: 18px 0 18px 40px;
+    }
+    .timeline-dot {
+      position: absolute;
+      top: 32px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--timeline-dot);
+      box-shadow: 0 0 0 4px var(--bg), 0 0 12px rgba(184, 134, 11, 0.3);
+      z-index: 3;
+    }
+    .timeline-entry:not(.right) .timeline-dot {
+      right: -7px;
+    }
+    .timeline-entry.right .timeline-dot {
+      left: -7px;
+    }
+    .timeline-card {
+      background: var(--timeline-card-bg);
+      border: 1px solid var(--timeline-card-border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .timeline-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+    .timeline-entry.you .timeline-card {
+      background: var(--timeline-you-bg);
+      border: 1.5px solid var(--timeline-you-border);
+      box-shadow: 0 4px 16px rgba(184, 134, 11, 0.15);
+    }
+    .timeline-entry.you .timeline-dot {
+      background: var(--accent-soft);
+      box-shadow: 0 0 0 4px var(--bg), 0 0 16px rgba(184, 134, 11, 0.6);
+      width: 16px;
+      height: 16px;
+      top: 31px;
+    }
+    .timeline-entry:not(.right).you .timeline-dot { right: -8px; }
+    .timeline-entry.right.you .timeline-dot { left: -8px; }
+    .timeline-age {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 26px;
-      font-weight: 600;
-      margin-top: 56px;
-      margin-bottom: 8px;
-      color: var(--text);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
       letter-spacing: -0.3px;
     }
-    h2::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: var(--accent-soft);
-      margin-top: 10px;
+    .timeline-entry.you .timeline-age {
+      color: var(--accent-soft);
     }
-    .note {
+    .timeline-name {
+      font-size: 13px;
       color: var(--text-muted);
-      font-style: italic;
-      font-size: 14.5px;
-      margin: 16px 0 28px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
+    .timeline-entry.you .timeline-name {
+      color: var(--accent-soft);
+      opacity: 0.85;
+    }
+    .timeline-story {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      margin: 0;
+    }
+    .timeline-closing {
+      text-align: center;
+      max-width: 620px;
+      margin: 40px auto 0;
+      padding: 24px 20px;
+      color: var(--text-muted);
+      font-size: 15px;
+      font-style: italic;
+      border-top: 1px solid var(--border);
+    }
+    .timeline-closing strong {
+      color: var(--accent-soft);
+      font-style: normal;
+    }
+    @media (max-width: 700px) {
+      /* Timeline becomes single-column on mobile */
+      .timeline-line-vertical { left: 24px; }
+      .timeline-entry {
+        width: 100%;
+        margin-left: 0;
+        padding: 12px 0 12px 56px;
+      }
+      .timeline-entry.right {
+        margin-left: 0;
+        padding: 12px 0 12px 56px;
+      }
+      .timeline-entry:not(.right) .timeline-dot,
+      .timeline-entry.right .timeline-dot {
+        left: 17px;
+        right: auto;
+      }
+      .timeline-entry:not(.right).you .timeline-dot,
+      .timeline-entry.right.you .timeline-dot {
+        left: 16px;
+      }
+    }
+
+    /* PAGE STYLES */
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px; font-weight: 600;
+      margin-top: 56px; margin-bottom: 8px;
+      color: var(--text); letter-spacing: -0.3px;
+    }
+    h2::after { content: ''; display: block; width: 40px; height: 2px; background: var(--accent-soft); margin-top: 10px; }
+    .note { color: var(--text-muted); font-style: italic; font-size: 14.5px; margin: 16px 0 28px; }
     p { margin: 12px 0; }
     a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
     a:hover { color: var(--accent-soft); }
     .sample {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 22px 24px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow);
-      transition: all 0.25s ease;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 22px 24px; margin-bottom: 16px;
+      box-shadow: var(--shadow); transition: all 0.25s ease;
     }
-    .sample:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-2px);
-      border-color: var(--accent-soft);
-    }
-    .sample-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--accent);
-      margin: 0 0 8px;
-    }
+    .sample:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); border-color: var(--accent-soft); }
+    .sample-title { font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-weight: 600; color: var(--accent); margin: 0 0 8px; }
     .sample p { margin: 0; font-size: 15px; color: var(--text); }
     .download {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 12px 24px;
-      background: var(--accent);
-      color: #ffffff !important;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 8px rgba(26, 77, 140, 0.2);
+      display: inline-block; margin-top: 24px; padding: 12px 24px;
+      background: var(--accent); color: #ffffff !important;
+      text-decoration: none; border-radius: 6px; font-size: 14px;
+      font-weight: 500; letter-spacing: 0.3px;
+      transition: all 0.25s ease; box-shadow: 0 2px 8px rgba(26, 77, 140, 0.2);
     }
-    .download:hover {
-      background: var(--accent-soft);
-      color: #ffffff !important;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(184, 134, 11, 0.3);
-    }
+    .download:hover { background: var(--accent-soft); color: #ffffff !important; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(184, 134, 11, 0.3); }
     .credentials, .contact-line { font-size: 15px; color: var(--text-muted); }
     @media (max-width: 700px) {
       body { padding: 30px 18px 60px; }
@@ -359,6 +384,21 @@
       <div class="legend-item"><span class="legend-dot"></span> Analysis &amp; Documentation</div>
       <div class="legend-item"><span class="legend-dot"></span> Communication &amp; Stakeholder Work</div>
       <div class="legend-item"><span class="legend-dot"></span> Adaptive Capabilities</div>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <h2>Reinvention at Every Age</h2>
+    <p class="note">A reminder that reinvention has no expiration date &mdash; and that most of the people we now consider defined by their work found that work later than we assume. Scroll to explore.</p>
+  </div>
+
+  <div class="timeline-section">
+    <div class="timeline-container" id="timelineContainer">
+      <div class="timeline-line-vertical"></div>
+      <!-- Timeline entries injected by JS -->
+    </div>
+    <div class="timeline-closing">
+      Reinvention isn't a detour. It's the pattern. <strong>The sixth stage is growth.</strong>
     </div>
   </div>
 
@@ -410,6 +450,7 @@
   </div>
 
   <script>
+    // THEME TOGGLE
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.getElementById('themeBtn').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
@@ -421,10 +462,9 @@
       document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
     }
 
-    // Create starfield background
+    // STARFIELD
     const starfield = document.getElementById('starfield');
-    const starCount = 60;
-    for (let i = 0; i < starCount; i++) {
+    for (let i = 0; i < 60; i++) {
       const star = document.createElement('div');
       star.className = 'star' + (Math.random() > 0.5 ? ' twinkle' : '');
       const size = Math.random() * 2 + 1;
@@ -436,6 +476,55 @@
       starfield.appendChild(star);
     }
 
+    // TIMELINE DATA — ordered chronologically by age
+    const timelineEntries = [
+      { age: 'Age 33', name: 'Judi Jakubowski', story: 'In her 30s, went back for her MBA while working full-time and raising a family. Studied nights and weekends for years to earn the degree.', you: true },
+      { age: 'Age 33', name: 'Judi Jakubowski', story: 'Also in her 30s: became one of the first remote workers at her Fortune 50 company, telecommuting in 1998 &mdash; before telecommuting was a thing.', you: true },
+      { age: 'Age 38', name: 'Ang Lee', story: 'After six years as a stay-at-home dad while his wife supported the family, he directed his first feature film. He would go on to win Best Director at the Oscars &mdash; twice.' },
+      { age: 'Age 39', name: 'Toni Morrison', story: 'Published her first novel, The Bluest Eye, while working full-time as a book editor and raising two sons alone. She won the Nobel Prize in Literature 23 years later.' },
+      { age: 'Age 40', name: 'Vera Wang', story: 'After failing to make the US Olympic figure skating team and years as a Vogue editor, she designed her own wedding dress at 40 &mdash; and launched a fashion empire.' },
+      { age: 'Age 49', name: 'Julia Child', story: 'Published Mastering the Art of French Cooking. She had never cooked seriously until her late 30s, when she moved to France with her husband and discovered her calling.' },
+      { age: 'Age 51', name: 'Katherine Johnson', story: 'Her NASA calculations were essential to the Apollo 11 moon landing in 1969. She had spent her career quietly doing the mathematical work that put astronauts in orbit &mdash; and on the moon.' },
+      { age: 'Age 52', name: 'Ray Kroc', story: 'Bought the franchise rights to a small California burger joint called McDonald\'s. He had spent 30 years selling milkshake machines before that.' },
+      { age: 'Age 55', name: 'Ronald Reagan', story: 'Elected Governor of California in his first political race, ending a Hollywood acting career that had lasted three decades. He would win the presidency at 69.' },
+      { age: 'Age 55+', name: 'Judi Jakubowski', story: 'After nearly 30 years at one company, laid off in a corporate restructuring. Within one year: passed the PMP exam with above-target scores in every domain, built two portfolio websites from scratch, taught herself Power BI and AI tools, launched a blog called The Reinvention Files, and began a Paralegal Certificate program.', you: true },
+      { age: 'Age 62', name: 'Colonel Harland Sanders', story: 'Franchised Kentucky Fried Chicken after his roadside restaurant was bypassed by a new interstate and he lost everything. He had been fired from a dozen jobs before that.' },
+      { age: 'Age 75', name: 'Nelson Mandela', story: 'Became the first Black president of South Africa, five years after being released from 27 years in prison. He was 71 when he walked free.' }
+    ];
+
+    // BUILD TIMELINE
+    const timelineContainer = document.getElementById('timelineContainer');
+    timelineEntries.forEach((entry, index) => {
+      const div = document.createElement('div');
+      div.className = 'timeline-entry' + (index % 2 === 1 ? ' right' : '') + (entry.you ? ' you' : '');
+      div.innerHTML = `
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-age">${entry.age}</div>
+          <div class="timeline-name">${entry.name}</div>
+          <p class="timeline-story">${entry.story}</p>
+        </div>
+      `;
+      timelineContainer.appendChild(div);
+    });
+
+    // INTERSECTION OBSERVER — fade cards in as they scroll into view
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -80px 0px',
+      threshold: 0.15
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.timeline-entry').forEach(el => observer.observe(el));
+
+    // CONSTELLATION DATA
     const nodes = [
       { id: 'gov1', label: 'Enterprise Governance Design', cluster: 'Governance & Compliance', desc: 'Designed scalable governance frameworks for portfolios processing 400+ initiatives annually across 10+ functional groups.', x: 140, y: 90 },
       { id: 'gov2', label: 'Contract Lifecycle Management', cluster: 'Governance & Compliance', desc: 'Governed 18-agreement supplier portfolio through full lifecycle: intake, review, approval, renewal, and amendment.', x: 70, y: 160 },
@@ -467,7 +556,6 @@
       { id: 'adp5', label: 'Governance Thinking for AI', cluster: 'Adaptive Capabilities', desc: 'Applied program management governance discipline to AI use: confidentiality boundaries, source attribution, output verification.', x: 380, y: 165 },
       { id: 'adp6', label: 'Second-Career Building', cluster: 'Adaptive Capabilities', desc: 'Paralegal Certificate candidate at UNC Charlotte (Anne Spychala Family Charitable Foundation Merit Scholar), expected July 2026.', x: 520, y: 165 }
     ];
-
     const clusterLabels = [
       { text: 'GOVERNANCE & COMPLIANCE', x: 140, y: 55 },
       { text: 'DELIVERY & EXECUTION', x: 770, y: 55 },
@@ -475,7 +563,6 @@
       { text: 'COMMUNICATION & STAKEHOLDER', x: 770, y: 365 },
       { text: 'ADAPTIVE CAPABILITIES', x: 450, y: 130 }
     ];
-
     const connections = [
       ['gov1', 'gov2'], ['gov1', 'gov3'], ['gov2', 'gov4'], ['gov3', 'gov4'], ['gov4', 'gov5'], ['gov2', 'gov6'], ['gov5', 'gov6'],
       ['del1', 'del2'], ['del2', 'del3'], ['del3', 'del4'], ['del4', 'del5'], ['del2', 'del6'], ['del5', 'del6'], ['del1', 'del3'],
@@ -492,12 +579,10 @@
       ['adp3', 'gov2'], ['adp3', 'ana2'], ['adp4', 'gov1'], ['adp4', 'del6'],
       ['adp5', 'gov1'], ['adp5', 'del2'], ['adp6', 'ana2']
     ];
-
     const svg = document.getElementById('constellationSvg');
     const SVG_NS = 'http://www.w3.org/2000/svg';
     const nodeMap = {};
     nodes.forEach(n => { nodeMap[n.id] = n; });
-
     nodes.forEach(n => {
       n.driftX = (Math.random() - 0.5) * 14;
       n.driftY = (Math.random() - 0.5) * 14;
@@ -508,7 +593,6 @@
       n.currentX = n.x;
       n.currentY = n.y;
     });
-
     const lineElements = {};
     connections.forEach(([aId, bId]) => {
       const line = document.createElementNS(SVG_NS, 'line');
@@ -523,7 +607,6 @@
       nodeMap[aId].connections.push(key);
       nodeMap[bId].connections.push(key);
     });
-
     clusterLabels.forEach(cl => {
       const text = document.createElementNS(SVG_NS, 'text');
       text.setAttribute('class', 'cluster-label');
@@ -533,43 +616,34 @@
       text.textContent = cl.text;
       svg.appendChild(text);
     });
-
     const nodeElements = {};
     nodes.forEach(n => {
       const group = document.createElementNS(SVG_NS, 'g');
       group.setAttribute('class', 'node-group');
       group.dataset.id = n.id;
-
       const glow = document.createElementNS(SVG_NS, 'circle');
       glow.setAttribute('class', 'node-glow');
       glow.setAttribute('r', '14');
-
       const circle = document.createElementNS(SVG_NS, 'circle');
       circle.setAttribute('class', 'node-circle');
       circle.setAttribute('r', '5');
-
       const label = document.createElementNS(SVG_NS, 'text');
       label.setAttribute('class', 'node-label');
       label.innerHTML = n.label;
-
       group.appendChild(glow);
       group.appendChild(circle);
       group.appendChild(label);
       svg.appendChild(group);
-
       nodeElements[n.id] = { group, glow, circle, label };
-
       group.addEventListener('mouseenter', e => showPopup(n, e));
       group.addEventListener('mouseleave', hidePopup);
       group.addEventListener('mousemove', e => positionPopup(e));
     });
-
     const popup = document.getElementById('nodePopup');
     const popupTitle = document.getElementById('popupTitle');
     const popupBody = document.getElementById('popupBody');
     const popupCluster = document.getElementById('popupCluster');
     const container = document.getElementById('constellationContainer');
-
     function showPopup(node, event) {
       popupTitle.innerHTML = node.label;
       popupBody.innerHTML = node.desc;
@@ -596,7 +670,6 @@
       popup.style.left = finalX + 'px';
       popup.style.top = finalY + 'px';
     }
-
     function animate(t) {
       nodes.forEach(n => {
         const dx = n.driftX * Math.sin(t * n.speedX + n.phaseX);
