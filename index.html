@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Judi Jakubowski — Paralegal</title>
+  <title>Judi Jakubowski — Senior Program Manager</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,12 +80,22 @@
       font-size: 16px;
     }
     .theme-toggle {
-      position: fixed; top: 20px; right: 20px;
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 50%; width: 44px; height: 44px;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 18px; box-shadow: var(--shadow);
-      transition: all 0.3s ease; z-index: 100;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      z-index: 100;
     }
     .theme-toggle:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
     .content-wrap { max-width: 760px; margin: 0 auto; }
@@ -162,39 +172,69 @@
     .legend-item { display: flex; align-items: center; gap: 6px; }
     .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: #b8860b; opacity: 0.9; }
 
-    /* TIMELINE */
-    .timeline-section { margin: 20px auto 60px; max-width: 900px; }
+    /* TIMELINE — more compact */
+    .timeline-section {
+      margin: 20px auto 60px;
+      max-width: 900px;
+    }
     .timeline-intro {
       text-align: center; max-width: 620px; margin: 0 auto 28px;
       color: var(--text-muted); font-size: 15px; font-style: italic;
     }
-    .timeline-container { position: relative; padding: 10px 0; }
+    .timeline-container {
+      position: relative;
+      padding: 10px 0;
+    }
     .timeline-line-vertical {
-      position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
       background: linear-gradient(to bottom, transparent 0%, var(--timeline-line) 6%, var(--timeline-line) 94%, transparent 100%);
       transform: translateX(-50%);
     }
     .timeline-entry {
-      position: relative; width: 50%; padding: 10px 32px 10px 0;
-      opacity: 0; transform: translateY(24px);
+      position: relative;
+      width: 50%;
+      padding: 10px 32px 10px 0;
+      opacity: 0;
+      transform: translateY(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .timeline-entry.visible { opacity: 1; transform: translateY(0); }
-    .timeline-entry.right { margin-left: 50%; padding: 10px 0 10px 32px; }
+    .timeline-entry.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .timeline-entry.right {
+      margin-left: 50%;
+      padding: 10px 0 10px 32px;
+    }
     .timeline-dot {
-      position: absolute; top: 22px; width: 12px; height: 12px;
-      border-radius: 50%; background: var(--timeline-dot);
+      position: absolute;
+      top: 22px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--timeline-dot);
       box-shadow: 0 0 0 3px var(--bg), 0 0 10px rgba(184, 134, 11, 0.3);
       z-index: 3;
     }
     .timeline-entry:not(.right) .timeline-dot { right: -6px; }
     .timeline-entry.right .timeline-dot { left: -6px; }
     .timeline-card {
-      background: var(--timeline-card-bg); border: 1px solid var(--timeline-card-border);
-      border-radius: 10px; padding: 14px 16px;
-      box-shadow: var(--shadow); transition: box-shadow 0.3s ease, transform 0.3s ease;
+      background: var(--timeline-card-bg);
+      border: 1px solid var(--timeline-card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
-    .timeline-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+    .timeline-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+    /* "YOU" entries — navy blue with gold accents */
     .timeline-entry.you .timeline-card {
       background: var(--timeline-you-bg-gradient), var(--timeline-you-bg);
       border: 1.5px solid var(--timeline-you-border);
@@ -202,45 +242,90 @@
       position: relative;
     }
     .timeline-entry.you .timeline-card::before {
-      content: '★'; position: absolute; top: 10px; right: 12px;
-      font-size: 16px; color: var(--timeline-you-accent); opacity: 0.9;
+      content: '★';
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 16px;
+      color: var(--timeline-you-accent);
+      opacity: 0.9;
       text-shadow: 0 0 8px rgba(244, 210, 122, 0.4);
     }
     .timeline-entry.you .timeline-dot {
       background: var(--timeline-you-accent);
       box-shadow: 0 0 0 3px var(--bg), 0 0 14px rgba(244, 210, 122, 0.7);
-      width: 14px; height: 14px; top: 21px;
+      width: 14px;
+      height: 14px;
+      top: 21px;
     }
     .timeline-entry:not(.right).you .timeline-dot { right: -7px; }
     .timeline-entry.right.you .timeline-dot { left: -7px; }
     .timeline-age {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 18px; font-weight: 700; color: var(--accent);
-      margin-bottom: 2px; letter-spacing: -0.3px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 2px;
+      letter-spacing: -0.3px;
     }
-    .timeline-entry.you .timeline-age { color: var(--timeline-you-accent); }
+    .timeline-entry.you .timeline-age {
+      color: var(--timeline-you-accent);
+    }
     .timeline-name {
-      font-size: 11px; color: var(--text-muted);
-      text-transform: uppercase; letter-spacing: 1px;
-      font-weight: 600; margin-bottom: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
-    .timeline-entry.you .timeline-name { color: var(--timeline-you-accent); opacity: 0.85; }
-    .timeline-story { font-size: 13.5px; line-height: 1.55; color: var(--text); margin: 0; }
-    .timeline-entry.you .timeline-story { color: var(--timeline-you-text); }
+    .timeline-entry.you .timeline-name {
+      color: var(--timeline-you-accent);
+      opacity: 0.85;
+    }
+    .timeline-story {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text);
+      margin: 0;
+    }
+    .timeline-entry.you .timeline-story {
+      color: var(--timeline-you-text);
+    }
     .timeline-closing {
-      text-align: center; max-width: 620px; margin: 32px auto 0;
-      padding: 20px 20px 0; color: var(--text-muted);
-      font-size: 15px; font-style: italic; border-top: 1px solid var(--border);
+      text-align: center;
+      max-width: 620px;
+      margin: 32px auto 0;
+      padding: 20px 20px 0;
+      color: var(--text-muted);
+      font-size: 15px;
+      font-style: italic;
+      border-top: 1px solid var(--border);
     }
-    .timeline-closing strong { color: var(--accent-soft); font-style: normal; }
+    .timeline-closing strong {
+      color: var(--accent-soft);
+      font-style: normal;
+    }
     @media (max-width: 700px) {
       .timeline-line-vertical { left: 20px; }
-      .timeline-entry { width: 100%; margin-left: 0; padding: 8px 0 8px 48px; }
-      .timeline-entry.right { margin-left: 0; padding: 8px 0 8px 48px; }
+      .timeline-entry {
+        width: 100%;
+        margin-left: 0;
+        padding: 8px 0 8px 48px;
+      }
+      .timeline-entry.right {
+        margin-left: 0;
+        padding: 8px 0 8px 48px;
+      }
       .timeline-entry:not(.right) .timeline-dot,
-      .timeline-entry.right .timeline-dot { left: 14px; right: auto; }
+      .timeline-entry.right .timeline-dot {
+        left: 14px;
+        right: auto;
+      }
       .timeline-entry:not(.right).you .timeline-dot,
-      .timeline-entry.right.you .timeline-dot { left: 13px; }
+      .timeline-entry.right.you .timeline-dot {
+        left: 13px;
+      }
     }
 
     /* PAGE */
@@ -289,15 +374,15 @@
 
   <div class="content-wrap">
     <div class="header">
-      <img src="../headshot.jpg" alt="Judi Jakubowski" class="headshot">
-      <h1>Judi Jakubowski</h1>
-      <p class="tagline">Paralegal &bull; Contract Review &amp; Compliance &bull; Charlotte, NC</p>
+      <img src="headshot.jpg" alt="Judi Jakubowski" class="headshot">
+      <h1>Judi Jakubowski, MBA, PMP</h1>
+      <p class="tagline">Senior Program Manager &bull; Charlotte, NC</p>
       <div class="accent-line"></div>
     </div>
   </div>
 
   <div class="constellation-section">
-    <p class="constellation-intro">A constellation of legal-adjacent and paralegal capabilities. Hover any node to explore.</p>
+    <p class="constellation-intro">A constellation of capabilities developed across three decades. Hover any node to explore.</p>
     <div class="constellation-container" id="constellationContainer">
       <div class="starfield" id="starfield"></div>
       <svg class="constellation-svg" id="constellationSvg" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid meet"></svg>
@@ -308,17 +393,17 @@
       </div>
     </div>
     <div class="constellation-legend">
-      <div class="legend-item"><span class="legend-dot"></span> Contract &amp; Compliance</div>
-      <div class="legend-item"><span class="legend-dot"></span> Legal Research &amp; Writing</div>
-      <div class="legend-item"><span class="legend-dot"></span> Litigation Support &amp; Case Management</div>
-      <div class="legend-item"><span class="legend-dot"></span> Legal Technology &amp; Systems</div>
+      <div class="legend-item"><span class="legend-dot"></span> Governance &amp; Compliance</div>
+      <div class="legend-item"><span class="legend-dot"></span> Delivery &amp; Execution</div>
+      <div class="legend-item"><span class="legend-dot"></span> Analysis &amp; Documentation</div>
+      <div class="legend-item"><span class="legend-dot"></span> Communication &amp; Stakeholder Work</div>
       <div class="legend-item"><span class="legend-dot"></span> Adaptive Capabilities</div>
     </div>
   </div>
 
   <div class="content-wrap">
     <h2>Reinvention at Every Age</h2>
-    <p class="note">A reminder that reinvention has no expiration date &mdash; and that career changes into law and other second-career work happen at every stage. Entries marked with a ★ are mine.</p>
+    <p class="note">A reminder that reinvention has no expiration date &mdash; and that most of the people we now consider defined by their work found that work later than we assume. Entries marked with a ★ are mine.</p>
   </div>
 
   <div class="timeline-section">
@@ -332,31 +417,36 @@
 
   <div class="content-wrap">
     <h2>About</h2>
-    <p>Paralegal Certificate candidate at UNC Charlotte (expected July 2026) and Anne Spychala Family Charitable Foundation Merit Scholar, bringing nearly 30 years of legal-adjacent enterprise experience to a focused legal career. My background centers on contract review and lifecycle management, regulated compliance documentation, cross-functional approval workflows, and the disciplined records management that supports audit readiness in highly regulated environments.</p>
-    <p>I am developing core paralegal competencies in legal writing, civil procedure, legal ethics, wills and estates, and legal technology including Clio, Odyssey File &amp; Serve, NC eCourts, and LexisNexis. I am pursuing paralegal and legal operations opportunities where contract review, compliance, and documentation discipline are central to the role.</p>
+    <p>Senior Program Manager with nearly 30 years of enterprise delivery experience leading complex, cross-functional initiatives at a Fortune 50 telecommunications company. My work has centered on governance, platform modernization, supplier oversight, and the steady alignment of executives, engineers, and operations teams toward shared outcomes.</p>
+    <p>I specialize in enterprise platform modernization, governance design at scale, Agile delivery across cross-functional teams, AI-augmented program management practice, and the disciplined execution that turns large, complex initiatives into measurable business outcomes.</p>
 
-    <h2>Legal-Adjacent Portfolio</h2>
-    <p class="note">Three initiatives from a Fortune 50 regulated environment demonstrating contract lifecycle management, regulated documentation, and compliance integrity. Details adapted from real enterprise work; identifying information removed.</p>
+    <h2>Program Management Portfolio</h2>
+    <p class="note">Four initiatives demonstrating governance design, platform modernization, measurable business outcomes, and AI-augmented program management practice. Details adapted from real enterprise work; identifying information removed.</p>
 
     <div class="sample">
-      <p class="sample-title">Supplier Contract Governance &amp; Lifecycle Management</p>
-      <p>Governed an 18-agreement supplier portfolio through a documented lifecycle, delivering significant recurring annual cost savings and reducing billing discrepancies by 92%.</p>
+      <p class="sample-title">Enterprise Product Catalog Modernization</p>
+      <p>Led Agile delivery of a multi-billion-dollar revenue catalog platform, raising internal adoption from approximately 5% to 70% and increasing delivery throughput by 70%.</p>
     </div>
 
     <div class="sample">
-      <p class="sample-title">Cross-Functional Approval &amp; Compliance Integrity</p>
-      <p>Held an enterprise governance line under organizational pressure, facilitating structured stakeholder review and preventing release of a change carrying material regulatory and pricing risk.</p>
+      <p class="sample-title">Change Management Migration &amp; Governance Redesign</p>
+      <p>Migrated 1,500+ change requests into structured PEGA workflows and reduced implementation timelines from 90 days to 30 days, a 67% reduction.</p>
     </div>
 
     <div class="sample">
-      <p class="sample-title">Regulated Platform Documentation &amp; Audit Readiness</p>
-      <p>Maintained audit-ready documentation across tens of thousands of annual transactions and 400+ annual initiatives spanning a global customer base in more than one hundred countries.</p>
+      <p class="sample-title">Cloud Contact Center Configuration Rules Engine</p>
+      <p>Designed a rules-driven configuration capability that reduced order entry clicks from 10+ to 1 and improved order processing time by 25%.</p>
     </div>
 
-    <a class="download" href="Jakubowski_Paralegal_Work_Samples.pdf">Download Full Portfolio (PDF)</a>
+    <div class="sample">
+      <p class="sample-title">Self-Directed AI Fluency &amp; Applied Program Management</p>
+      <p>Built daily working fluency across multiple AI platforms, applied to PMP exam preparation (passed with above-target scores across every domain), program management practice, and complex problem-solving &mdash; grounded in the principle that AI output, no matter how polished, must always be verified.</p>
+    </div>
+
+    <a class="download" href="Jakubowski_PM_Work_Samples.pdf">Download Full Portfolio (PDF)</a>
 
     <h2>Writing</h2>
-    <p class="note">I write a blog called The Reinvention Files &mdash; notes from the in-between of a career transition, including the work of building a second career in legal practice. Subscribe on Substack to get new episodes in your inbox.</p>
+    <p class="note">I write a blog called The Reinvention Files &mdash; notes from the in-between of a career transition. Subscribe on Substack to get new episodes in your inbox.</p>
 
     <div class="sample">
       <p class="sample-title">Episode 1 &mdash; Welcome to The Reinvention Files</p>
@@ -366,10 +456,7 @@
     <a class="download" href="https://judithjakubowski.substack.com">Subscribe to The Reinvention Files</a>
 
     <h2>Credentials</h2>
-    <p class="credentials">Paralegal Certificate candidate, UNC Charlotte (Est. July 2026) &bull; Anne Spychala Family Charitable Foundation Merit Scholar &bull; MBA, Monmouth University &bull; B.E. Electrical Engineering, Stevens Institute of Technology</p>
-
-    <h2>Coursework</h2>
-    <p class="credentials">Legal Ethics (NC RPC, ABA Model Rules) &bull; Civil Procedure (FRCP and NC Rules) &bull; Legal Writing &bull; Wills and Estates (NC intestate succession, probate, trusts) &bull; Legal Technology (Clio, Odyssey File &amp; Serve, NC eCourts, LexisNexis) &bull; American Jurisprudence</p>
+    <p class="credentials">MBA, Monmouth University &bull; B.E. Electrical Engineering, Stevens Institute of Technology &bull; PMP Certified</p>
 
     <h2>Contact</h2>
     <p class="contact-line"><a href="https://www.linkedin.com/in/judith-a-jakubowski">LinkedIn</a> &bull; judithjakubowski@sbcglobal.net</p>
@@ -410,7 +497,7 @@
       { age: 'Age 51', name: 'Katherine Johnson', story: 'Her NASA calculations were essential to the Apollo 11 moon landing in 1969. She had spent her career quietly doing the mathematical work that put astronauts in orbit &mdash; and on the moon.' },
       { age: 'Age 52', name: 'Ray Kroc', story: 'Bought the franchise rights to a small California burger joint called McDonald\'s. He had spent 30 years selling milkshake machines before that.' },
       { age: 'Age 55', name: 'Ronald Reagan', story: 'Elected Governor of California in his first political race, ending a Hollywood acting career that had lasted three decades. He would win the presidency at 69.' },
-      { age: 'In her 50s', name: 'Judi Jakubowski', story: 'After nearly 30 years at one company, laid off in a corporate restructuring. Within one year: began a Paralegal Certificate program at UNC Charlotte as an Anne Spychala Family Charitable Foundation Merit Scholar, passed the PMP exam with above-target scores, built two portfolio websites from scratch, taught herself Power BI and AI tools, and launched a blog called The Reinvention Files.', you: true },
+      { age: 'In her 50s', name: 'Judi Jakubowski', story: 'After nearly 30 years at one company, laid off in a corporate restructuring. Within one year: passed the PMP exam with above-target scores in every domain, built two portfolio websites from scratch, taught herself Power BI and AI tools, launched a blog called The Reinvention Files, and began a Paralegal Certificate program.', you: true },
       { age: 'Age 62', name: 'Colonel Harland Sanders', story: 'Franchised Kentucky Fried Chicken after his roadside restaurant was bypassed by a new interstate and he lost everything. He had been fired from a dozen jobs before that.' },
       { age: 'Age 75', name: 'Nelson Mandela', story: 'Became the first Black president of South Africa, five years after being released from 27 years in prison. He was 71 when he walked free.' }
     ];
@@ -441,86 +528,60 @@
     }, observerOptions);
     document.querySelectorAll('.timeline-entry').forEach(el => observer.observe(el));
 
-    // CONSTELLATION — LEGAL-FOCUSED CLUSTERS
     const nodes = [
-      // CONTRACT & COMPLIANCE (top-left)
-      { id: 'con1', label: 'Contract Review', cluster: 'Contract & Compliance', desc: 'Detailed review of third-party contract terms across enterprise supplier agreements, coordinating redlines with internal counsel.', x: 140, y: 90 },
-      { id: 'con2', label: 'Lifecycle Management', cluster: 'Contract & Compliance', desc: 'Governed an 18-agreement supplier portfolio through the full lifecycle: intake, review, approval, execution, renewal, and amendment.', x: 70, y: 160 },
-      { id: 'con3', label: 'Regulatory Compliance', cluster: 'Contract & Compliance', desc: 'Maintained audit-ready documentation across regulated platform transactions spanning more than 100 countries.', x: 200, y: 175 },
-      { id: 'con4', label: 'Audit Readiness', cluster: 'Contract & Compliance', desc: 'Built records management protocols with version control, tiered access, and consistent retrieval standards for regulated materials.', x: 130, y: 240 },
-      { id: 'con5', label: 'Obligation Tracking', cluster: 'Contract & Compliance', desc: 'Tracked renewal dates, contractual obligations, performance milestones, and notice periods across enterprise agreements.', x: 60, y: 280 },
-      { id: 'con6', label: 'Approval Workflow Design', cluster: 'Contract & Compliance', desc: 'Architected multi-stakeholder approval routing including legal counsel review, with built-in escalation controls.', x: 220, y: 295 },
-
-      // LEGAL RESEARCH & WRITING (top-right)
-      { id: 'law1', label: 'Legal Writing', cluster: 'Legal Research & Writing', desc: 'Developing legal writing skills through UNC Charlotte Paralegal Certificate: motions, demand letters, and memoranda.', x: 760, y: 95 },
-      { id: 'law2', label: 'Civil Procedure', cluster: 'Legal Research & Writing', desc: 'Studying FRCP and NC Rules of Civil Procedure through UNC Charlotte Paralegal Certificate coursework.', x: 830, y: 170 },
-      { id: 'law3', label: 'Case Analysis', cluster: 'Legal Research & Writing', desc: 'Applying case law and precedent through structured briefs and analysis exercises in Paralegal Certificate coursework.', x: 700, y: 165 },
-      { id: 'law4', label: 'Legal Ethics', cluster: 'Legal Research & Writing', desc: 'Studying NC Rules of Professional Conduct and ABA Model Rules through UNC Charlotte Paralegal Certificate.', x: 770, y: 240 },
-      { id: 'law5', label: 'E-Discovery / EDRM', cluster: 'Legal Research & Writing', desc: 'Developing familiarity with the Electronic Discovery Reference Model and e-discovery workflows through coursework.', x: 840, y: 295 },
-      { id: 'law6', label: 'Wills &amp; Estates', cluster: 'Legal Research & Writing', desc: 'Studying NC intestate succession, probate, and trust administration through Paralegal Certificate coursework.', x: 690, y: 305 },
-
-      // LITIGATION SUPPORT & CASE MANAGEMENT (bottom-left)
-      { id: 'lit1', label: 'Records Management', cluster: 'Litigation Support & Case Management', desc: 'Built SharePoint-based document libraries with structured naming conventions, version control, and tiered access protocols.', x: 95, y: 380 },
-      { id: 'lit2', label: 'Docket Management', cluster: 'Litigation Support & Case Management', desc: 'Developing docket management practice through NC eCourts training and Paralegal Certificate coursework.', x: 175, y: 420 },
-      { id: 'lit3', label: 'Document Production', cluster: 'Litigation Support & Case Management', desc: 'Produced executive-grade written deliverables with consistent professional quality across regulated environments.', x: 60, y: 450 },
-      { id: 'lit4', label: 'Case Timeline Tracking', cluster: 'Litigation Support & Case Management', desc: 'Tracked complex, multi-stakeholder cases with deadlines, dependencies, and deliverable milestones across regulated portfolios.', x: 220, y: 480 },
-      { id: 'lit5', label: 'Discovery Workflow', cluster: 'Litigation Support & Case Management', desc: 'Applying process design fluency to discovery workflows: intake, review, categorization, and production.', x: 135, y: 510 },
-      { id: 'lit6', label: 'Compliance Documentation', cluster: 'Litigation Support & Case Management', desc: 'Coordinated documentation review and approval workflows with internal legal counsel ahead of product launches.', x: 50, y: 380 },
-
-      // LEGAL TECHNOLOGY & SYSTEMS (bottom-right)
-      { id: 'tec1', label: 'Clio', cluster: 'Legal Technology & Systems', desc: 'Building proficiency in Clio (case management, billing, document management) through Clio Academy coursework.', x: 720, y: 395 },
-      { id: 'tec2', label: 'NC eCourts &amp; Odyssey', cluster: 'Legal Technology & Systems', desc: 'Developing fluency in NC eCourts and Odyssey File &amp; Serve for court filings and case management.', x: 820, y: 415 },
-      { id: 'tec3', label: 'LexisNexis', cluster: 'Legal Technology & Systems', desc: 'Legal research and case law lookup using LexisNexis through Paralegal Certificate coursework.', x: 690, y: 470 },
-      { id: 'tec4', label: 'Document Management', cluster: 'Legal Technology & Systems', desc: 'Enterprise document management including SharePoint, DocuSign, and structured records systems.', x: 780, y: 490 },
-      { id: 'tec5', label: 'Power BI &amp; Data', cluster: 'Legal Technology & Systems', desc: 'Self-taught Power BI fluency (DAX, Power Query, visual design) applicable to legal analytics and reporting.', x: 850, y: 480 },
-
-      // ADAPTIVE CAPABILITIES (center)
-      { id: 'adp1', label: 'AI Fluency', cluster: 'Adaptive Capabilities', desc: 'Daily working fluency across multiple AI platforms, applied to legal study, document drafting, and research \u2014 with verification discipline appropriate to legal work.', x: 450, y: 230 },
-      { id: 'adp2', label: 'Self-Directed Learning', cluster: 'Adaptive Capabilities', desc: 'Paralegal Certificate, PMP certification, Power BI fluency, AI tools, and from-scratch web development &mdash; all self-taught or self-directed.', x: 380, y: 300 },
-      { id: 'adp3', label: 'Career Pivot into Law', cluster: 'Adaptive Capabilities', desc: 'Building a focused legal career after nearly 30 years in enterprise program management, drawing on transferable governance and contract experience.', x: 520, y: 300 },
-      { id: 'adp4', label: 'Governance Thinking', cluster: 'Adaptive Capabilities', desc: 'Applied program management governance discipline to compliance, records management, and approval workflows across regulated environments.', x: 450, y: 370 },
-      { id: 'adp5', label: 'Ethics &amp; Verification', cluster: 'Adaptive Capabilities', desc: 'Applying rigor and verification discipline to AI-assisted work \u2014 essential for legal practice where source accuracy and confidentiality matter most.', x: 380, y: 165 },
-      { id: 'adp6', label: 'Merit Scholar', cluster: 'Adaptive Capabilities', desc: 'Anne Spychala Family Charitable Foundation Merit Scholar at UNC Charlotte, Paralegal Certificate expected July 2026.', x: 520, y: 165 }
+      { id: 'gov1', label: 'Enterprise Governance Design', cluster: 'Governance & Compliance', desc: 'Designed scalable governance frameworks for portfolios processing 400+ initiatives annually across 10+ functional groups.', x: 140, y: 90 },
+      { id: 'gov2', label: 'Contract Lifecycle Management', cluster: 'Governance & Compliance', desc: 'Governed 18-agreement supplier portfolio through full lifecycle: intake, review, approval, renewal, and amendment.', x: 70, y: 160 },
+      { id: 'gov3', label: 'Regulatory Compliance', cluster: 'Governance & Compliance', desc: 'Maintained audit-ready documentation across regulated platform transactions spanning more than 100 countries.', x: 200, y: 175 },
+      { id: 'gov4', label: 'Audit Readiness', cluster: 'Governance & Compliance', desc: 'Built records management protocols with version control, tiered access, and consistent retrieval standards.', x: 130, y: 240 },
+      { id: 'gov5', label: 'Approval Workflow Design', cluster: 'Governance & Compliance', desc: 'Architected multi-stakeholder approval routing for enterprise change requests with built-in escalation controls.', x: 60, y: 280 },
+      { id: 'gov6', label: 'Supplier Oversight', cluster: 'Governance & Compliance', desc: 'Tracked renewal dates, performance milestones, and contractual obligations across enterprise vendor relationships.', x: 220, y: 295 },
+      { id: 'del1', label: 'Agile Delivery', cluster: 'Delivery & Execution', desc: 'Led Agile teams across multi-region delivery with backlogs of 200+ user stories per cycle.', x: 760, y: 95 },
+      { id: 'del2', label: 'Program Management (PMP)', cluster: 'Delivery & Execution', desc: 'PMP-certified with above-target scores across all five PMBOK domains. 30 years of enterprise delivery leadership.', x: 830, y: 170 },
+      { id: 'del3', label: 'Platform Modernization', cluster: 'Delivery & Execution', desc: 'Modernized enterprise product catalog supporting a multi-billion-dollar revenue portfolio, lifting adoption from 5% to 70%.', x: 700, y: 165 },
+      { id: 'del4', label: 'Change Management', cluster: 'Delivery & Execution', desc: 'Migrated 1,500+ change requests into PEGA workflows; reduced implementation timelines by 67%.', x: 770, y: 240 },
+      { id: 'del5', label: 'PMO Operations', cluster: 'Delivery & Execution', desc: 'Designed governance forums, planning cadences, and reporting rhythms across enterprise portfolios.', x: 840, y: 295 },
+      { id: 'del6', label: 'Cross-Functional Leadership', cluster: 'Delivery & Execution', desc: 'Aligned executives, engineers, vendors, and operations teams around measurable shared outcomes.', x: 690, y: 305 },
+      { id: 'ana1', label: 'Technical Writing', cluster: 'Analysis & Documentation', desc: 'Translated complex technical and regulatory information into clear, structured deliverables for diverse audiences.', x: 95, y: 380 },
+      { id: 'ana2', label: 'Legal Writing', cluster: 'Analysis & Documentation', desc: 'Developing legal writing skills through UNC Charlotte Paralegal Certificate program: motions, demand letters, civil procedure.', x: 175, y: 420 },
+      { id: 'ana3', label: 'Requirements Drafting', cluster: 'Analysis & Documentation', desc: 'Wrote acceptance criteria, user stories, and specifications across enterprise platform delivery cycles.', x: 60, y: 450 },
+      { id: 'ana4', label: 'Risk Analysis', cluster: 'Analysis & Documentation', desc: 'Structured risk identification, mitigation planning, and proactive surfacing across technical and organizational categories.', x: 220, y: 480 },
+      { id: 'ana5', label: 'Power BI &amp; Data', cluster: 'Analysis & Documentation', desc: 'Self-taught Power BI fluency (DAX, Power Query, visual design) to deepen analytical foundation.', x: 135, y: 510 },
+      { id: 'ana6', label: 'Executive Reporting', cluster: 'Analysis & Documentation', desc: 'Delivered leadership-grade reporting that shifted governance from reactive escalation to data-informed decisions.', x: 50, y: 380 },
+      { id: 'com1', label: 'Executive Communication', cluster: 'Communication & Stakeholder Work', desc: 'Translated complex initiatives into clear, decision-ready briefings for senior leadership under deadline pressure.', x: 720, y: 395 },
+      { id: 'com2', label: 'Stakeholder Facilitation', cluster: 'Communication & Stakeholder Work', desc: 'Convened multi-functional stakeholder reviews, surfaced concerns, and held governance lines under organizational pressure.', x: 820, y: 415 },
+      { id: 'com3', label: 'Written Deliverables', cluster: 'Communication & Stakeholder Work', desc: 'Produced executive-grade written deliverables with consistent professional quality across regulated environments.', x: 690, y: 470 },
+      { id: 'com4', label: 'Presentation', cluster: 'Communication & Stakeholder Work', desc: 'Designed and delivered briefings that aligned cross-functional teams around shared decisions and outcomes.', x: 780, y: 490 },
+      { id: 'com5', label: 'Negotiation', cluster: 'Communication & Stakeholder Work', desc: 'Coordinated redlines and revisions with internal counsel; renegotiated vendor commitments for recurring cost savings.', x: 850, y: 480 },
+      { id: 'adp1', label: 'AI Fluency', cluster: 'Adaptive Capabilities', desc: 'Daily working fluency across multiple AI platforms, applied to deliverables with verification discipline. Built custom PMP study tools, paralegal study guides, and portfolio sites with AI-assisted development.', x: 450, y: 230 },
+      { id: 'adp2', label: 'Self-Directed Learning', cluster: 'Adaptive Capabilities', desc: 'PMP certification, Power BI fluency, paralegal coursework, AI tools, and from-scratch web development &mdash; all self-taught.', x: 380, y: 300 },
+      { id: 'adp3', label: 'Continuous Reinvention', cluster: 'Adaptive Capabilities', desc: 'Building a second professional track in legal practice while pursuing senior PM roles. The Reinvention Files documents the work.', x: 520, y: 300 },
+      { id: 'adp4', label: 'Navigating Ambiguity', cluster: 'Adaptive Capabilities', desc: 'Three decades of operating under shifting priorities, organizational change, and emerging technology cycles.', x: 450, y: 370 },
+      { id: 'adp5', label: 'Governance Thinking for AI', cluster: 'Adaptive Capabilities', desc: 'Applied program management governance discipline to AI use: confidentiality boundaries, source attribution, output verification.', x: 380, y: 165 },
+      { id: 'adp6', label: 'Second-Career Building', cluster: 'Adaptive Capabilities', desc: 'Paralegal Certificate candidate at UNC Charlotte (Anne Spychala Family Charitable Foundation Merit Scholar), expected July 2026.', x: 520, y: 165 }
     ];
-
     const clusterLabels = [
-      { text: 'CONTRACT & COMPLIANCE', x: 140, y: 55 },
-      { text: 'LEGAL RESEARCH & WRITING', x: 770, y: 55 },
-      { text: 'LITIGATION SUPPORT', x: 135, y: 350 },
-      { text: 'LEGAL TECHNOLOGY & SYSTEMS', x: 770, y: 365 },
+      { text: 'GOVERNANCE & COMPLIANCE', x: 140, y: 55 },
+      { text: 'DELIVERY & EXECUTION', x: 770, y: 55 },
+      { text: 'ANALYSIS & DOCUMENTATION', x: 135, y: 350 },
+      { text: 'COMMUNICATION & STAKEHOLDER', x: 770, y: 365 },
       { text: 'ADAPTIVE CAPABILITIES', x: 450, y: 130 }
     ];
-
     const connections = [
-      // Intra-cluster: Contract & Compliance
-      ['con1', 'con2'], ['con1', 'con3'], ['con2', 'con4'], ['con3', 'con4'], ['con4', 'con5'], ['con2', 'con6'], ['con5', 'con6'],
-      // Intra-cluster: Legal Research & Writing
-      ['law1', 'law2'], ['law2', 'law3'], ['law3', 'law4'], ['law4', 'law5'], ['law1', 'law6'], ['law2', 'law6'], ['law1', 'law3'],
-      // Intra-cluster: Litigation Support
-      ['lit1', 'lit2'], ['lit1', 'lit3'], ['lit3', 'lit4'], ['lit4', 'lit5'], ['lit1', 'lit6'], ['lit2', 'lit6'],
-      // Intra-cluster: Legal Technology
-      ['tec1', 'tec2'], ['tec2', 'tec3'], ['tec3', 'tec4'], ['tec4', 'tec5'], ['tec1', 'tec3'],
-      // Intra-cluster: Adaptive
+      ['gov1', 'gov2'], ['gov1', 'gov3'], ['gov2', 'gov4'], ['gov3', 'gov4'], ['gov4', 'gov5'], ['gov2', 'gov6'], ['gov5', 'gov6'],
+      ['del1', 'del2'], ['del2', 'del3'], ['del3', 'del4'], ['del4', 'del5'], ['del2', 'del6'], ['del5', 'del6'], ['del1', 'del3'],
+      ['ana1', 'ana2'], ['ana1', 'ana3'], ['ana3', 'ana4'], ['ana4', 'ana5'], ['ana1', 'ana6'], ['ana2', 'ana6'],
+      ['com1', 'com2'], ['com2', 'com3'], ['com3', 'com4'], ['com4', 'com5'], ['com1', 'com3'], ['com2', 'com5'],
       ['adp1', 'adp2'], ['adp2', 'adp3'], ['adp3', 'adp4'], ['adp1', 'adp4'], ['adp1', 'adp5'], ['adp3', 'adp6'], ['adp5', 'adp6'], ['adp2', 'adp4'],
-
-      // Cross-cluster: Contract <-> Legal Research
-      ['con1', 'law1'], ['con3', 'law2'], ['con4', 'law4'],
-      // Cross-cluster: Contract <-> Litigation Support
-      ['con4', 'lit1'], ['con4', 'lit6'], ['con5', 'lit4'],
-      // Cross-cluster: Contract <-> Legal Tech
-      ['con1', 'tec4'], ['con4', 'tec4'],
-      // Cross-cluster: Legal Research <-> Litigation Support
-      ['law5', 'lit5'], ['law3', 'lit4'], ['law1', 'lit3'],
-      // Cross-cluster: Legal Research <-> Legal Tech
-      ['law3', 'tec3'], ['law5', 'tec3'], ['law2', 'tec2'],
-      // Cross-cluster: Litigation <-> Legal Tech
-      ['lit2', 'tec2'], ['lit1', 'tec4'], ['lit5', 'tec3'],
-      // Adaptive bridges everything
-      ['adp1', 'law1'], ['adp1', 'tec3'], ['adp2', 'law1'], ['adp2', 'tec1'],
-      ['adp3', 'con2'], ['adp3', 'law1'], ['adp4', 'con1'], ['adp4', 'con4'],
-      ['adp5', 'law4'], ['adp5', 'con3'], ['adp6', 'law1']
+      ['gov1', 'del2'], ['gov5', 'del4'], ['gov1', 'del5'],
+      ['gov4', 'ana6'], ['gov3', 'ana2'], ['gov4', 'ana3'],
+      ['gov1', 'com2'], ['gov6', 'com5'],
+      ['del3', 'ana3'], ['del6', 'ana6'],
+      ['del2', 'com1'], ['del6', 'com2'], ['del4', 'com3'],
+      ['ana6', 'com1'], ['ana1', 'com3'], ['ana2', 'com3'],
+      ['adp1', 'del2'], ['adp1', 'ana5'], ['adp2', 'del2'], ['adp2', 'ana2'],
+      ['adp3', 'gov2'], ['adp3', 'ana2'], ['adp4', 'gov1'], ['adp4', 'del6'],
+      ['adp5', 'gov1'], ['adp5', 'del2'], ['adp6', 'ana2']
     ];
-
     const svg = document.getElementById('constellationSvg');
     const SVG_NS = 'http://www.w3.org/2000/svg';
     const nodeMap = {};
@@ -535,7 +596,6 @@
       n.currentX = n.x;
       n.currentY = n.y;
     });
-
     const lineElements = {};
     connections.forEach(([aId, bId]) => {
       const line = document.createElementNS(SVG_NS, 'line');
@@ -550,7 +610,6 @@
       nodeMap[aId].connections.push(key);
       nodeMap[bId].connections.push(key);
     });
-
     clusterLabels.forEach(cl => {
       const text = document.createElementNS(SVG_NS, 'text');
       text.setAttribute('class', 'cluster-label');
@@ -560,7 +619,6 @@
       text.textContent = cl.text;
       svg.appendChild(text);
     });
-
     const nodeElements = {};
     nodes.forEach(n => {
       const group = document.createElementNS(SVG_NS, 'g');
@@ -584,13 +642,11 @@
       group.addEventListener('mouseleave', hidePopup);
       group.addEventListener('mousemove', e => positionPopup(e));
     });
-
     const popup = document.getElementById('nodePopup');
     const popupTitle = document.getElementById('popupTitle');
     const popupBody = document.getElementById('popupBody');
     const popupCluster = document.getElementById('popupCluster');
     const container = document.getElementById('constellationContainer');
-
     function showPopup(node, event) {
       popupTitle.innerHTML = node.label;
       popupBody.innerHTML = node.desc;
