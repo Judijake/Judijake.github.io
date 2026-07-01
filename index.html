@@ -31,8 +31,11 @@
       --timeline-card-bg: #ffffff;
       --timeline-card-border: #e8e4dc;
       --timeline-dot: #b8860b;
-      --timeline-you-bg: #fdf6e3;
-      --timeline-you-border: #b8860b;
+      --timeline-you-bg: #1a3560;
+      --timeline-you-bg-gradient: linear-gradient(135deg, #1e3d70 0%, #16305a 100%);
+      --timeline-you-border: #f4d27a;
+      --timeline-you-text: #f4ecd8;
+      --timeline-you-accent: #f4d27a;
     }
     [data-theme="dark"] {
       --bg: #0f1419;
@@ -57,8 +60,11 @@
       --timeline-card-bg: #1a2028;
       --timeline-card-border: #2a3340;
       --timeline-dot: #d4a85a;
-      --timeline-you-bg: #2a2416;
-      --timeline-you-border: #d4a85a;
+      --timeline-you-bg: #142d54;
+      --timeline-you-bg-gradient: linear-gradient(135deg, #1a3560 0%, #0e2246 100%);
+      --timeline-you-border: #f4d27a;
+      --timeline-you-text: #f4ecd8;
+      --timeline-you-accent: #f4d27a;
     }
     * { box-sizing: border-box; }
     body {
@@ -109,9 +115,7 @@
       letter-spacing: 0.5px; text-transform: uppercase;
       margin: 0; font-weight: 500;
     }
-    .accent-line {
-      width: 60px; height: 2px; background: var(--accent-soft); margin: 24px auto;
-    }
+    .accent-line { width: 60px; height: 2px; background: var(--accent-soft); margin: 24px auto; }
 
     /* CONSTELLATION */
     .constellation-section { margin: 20px auto 60px; max-width: 920px; }
@@ -168,18 +172,18 @@
     .legend-item { display: flex; align-items: center; gap: 6px; }
     .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: #b8860b; opacity: 0.9; }
 
-    /* TIMELINE */
+    /* TIMELINE — more compact */
     .timeline-section {
-      margin: 20px auto 80px;
+      margin: 20px auto 60px;
       max-width: 900px;
     }
     .timeline-intro {
-      text-align: center; max-width: 620px; margin: 0 auto 40px;
+      text-align: center; max-width: 620px; margin: 0 auto 28px;
       color: var(--text-muted); font-size: 15px; font-style: italic;
     }
     .timeline-container {
       position: relative;
-      padding: 20px 0;
+      padding: 10px 0;
     }
     .timeline-line-vertical {
       position: absolute;
@@ -187,15 +191,15 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: linear-gradient(to bottom, transparent 0%, var(--timeline-line) 8%, var(--timeline-line) 92%, transparent 100%);
+      background: linear-gradient(to bottom, transparent 0%, var(--timeline-line) 6%, var(--timeline-line) 94%, transparent 100%);
       transform: translateX(-50%);
     }
     .timeline-entry {
       position: relative;
       width: 50%;
-      padding: 18px 40px 18px 0;
+      padding: 10px 32px 10px 0;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .timeline-entry.visible {
@@ -204,29 +208,25 @@
     }
     .timeline-entry.right {
       margin-left: 50%;
-      padding: 18px 0 18px 40px;
+      padding: 10px 0 10px 32px;
     }
     .timeline-dot {
       position: absolute;
-      top: 32px;
-      width: 14px;
-      height: 14px;
+      top: 22px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: var(--timeline-dot);
-      box-shadow: 0 0 0 4px var(--bg), 0 0 12px rgba(184, 134, 11, 0.3);
+      box-shadow: 0 0 0 3px var(--bg), 0 0 10px rgba(184, 134, 11, 0.3);
       z-index: 3;
     }
-    .timeline-entry:not(.right) .timeline-dot {
-      right: -7px;
-    }
-    .timeline-entry.right .timeline-dot {
-      left: -7px;
-    }
+    .timeline-entry:not(.right) .timeline-dot { right: -6px; }
+    .timeline-entry.right .timeline-dot { left: -6px; }
     .timeline-card {
       background: var(--timeline-card-bg);
       border: 1px solid var(--timeline-card-border);
-      border-radius: 12px;
-      padding: 20px 22px;
+      border-radius: 10px;
+      padding: 14px 16px;
       box-shadow: var(--shadow);
       transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
@@ -234,54 +234,69 @@
       box-shadow: var(--shadow-hover);
       transform: translateY(-2px);
     }
+    /* "YOU" entries — navy blue with gold accents */
     .timeline-entry.you .timeline-card {
-      background: var(--timeline-you-bg);
+      background: var(--timeline-you-bg-gradient), var(--timeline-you-bg);
       border: 1.5px solid var(--timeline-you-border);
-      box-shadow: 0 4px 16px rgba(184, 134, 11, 0.15);
+      box-shadow: 0 4px 18px rgba(26, 77, 140, 0.25);
+      position: relative;
+    }
+    .timeline-entry.you .timeline-card::before {
+      content: '★';
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 16px;
+      color: var(--timeline-you-accent);
+      opacity: 0.9;
+      text-shadow: 0 0 8px rgba(244, 210, 122, 0.4);
     }
     .timeline-entry.you .timeline-dot {
-      background: var(--accent-soft);
-      box-shadow: 0 0 0 4px var(--bg), 0 0 16px rgba(184, 134, 11, 0.6);
-      width: 16px;
-      height: 16px;
-      top: 31px;
+      background: var(--timeline-you-accent);
+      box-shadow: 0 0 0 3px var(--bg), 0 0 14px rgba(244, 210, 122, 0.7);
+      width: 14px;
+      height: 14px;
+      top: 21px;
     }
-    .timeline-entry:not(.right).you .timeline-dot { right: -8px; }
-    .timeline-entry.right.you .timeline-dot { left: -8px; }
+    .timeline-entry:not(.right).you .timeline-dot { right: -7px; }
+    .timeline-entry.right.you .timeline-dot { left: -7px; }
     .timeline-age {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
       color: var(--accent);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       letter-spacing: -0.3px;
     }
     .timeline-entry.you .timeline-age {
-      color: var(--accent-soft);
+      color: var(--timeline-you-accent);
     }
     .timeline-name {
-      font-size: 13px;
+      font-size: 11px;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .timeline-entry.you .timeline-name {
-      color: var(--accent-soft);
+      color: var(--timeline-you-accent);
       opacity: 0.85;
     }
     .timeline-story {
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 13.5px;
+      line-height: 1.55;
       color: var(--text);
       margin: 0;
+    }
+    .timeline-entry.you .timeline-story {
+      color: var(--timeline-you-text);
     }
     .timeline-closing {
       text-align: center;
       max-width: 620px;
-      margin: 40px auto 0;
-      padding: 24px 20px;
+      margin: 32px auto 0;
+      padding: 20px 20px 0;
       color: var(--text-muted);
       font-size: 15px;
       font-style: italic;
@@ -292,29 +307,28 @@
       font-style: normal;
     }
     @media (max-width: 700px) {
-      /* Timeline becomes single-column on mobile */
-      .timeline-line-vertical { left: 24px; }
+      .timeline-line-vertical { left: 20px; }
       .timeline-entry {
         width: 100%;
         margin-left: 0;
-        padding: 12px 0 12px 56px;
+        padding: 8px 0 8px 48px;
       }
       .timeline-entry.right {
         margin-left: 0;
-        padding: 12px 0 12px 56px;
+        padding: 8px 0 8px 48px;
       }
       .timeline-entry:not(.right) .timeline-dot,
       .timeline-entry.right .timeline-dot {
-        left: 17px;
+        left: 14px;
         right: auto;
       }
       .timeline-entry:not(.right).you .timeline-dot,
       .timeline-entry.right.you .timeline-dot {
-        left: 16px;
+        left: 13px;
       }
     }
 
-    /* PAGE STYLES */
+    /* PAGE */
     h2 {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 26px; font-weight: 600;
@@ -389,13 +403,12 @@
 
   <div class="content-wrap">
     <h2>Reinvention at Every Age</h2>
-    <p class="note">A reminder that reinvention has no expiration date &mdash; and that most of the people we now consider defined by their work found that work later than we assume. Scroll to explore.</p>
+    <p class="note">A reminder that reinvention has no expiration date &mdash; and that most of the people we now consider defined by their work found that work later than we assume. Entries marked with a ★ are mine.</p>
   </div>
 
   <div class="timeline-section">
     <div class="timeline-container" id="timelineContainer">
       <div class="timeline-line-vertical"></div>
-      <!-- Timeline entries injected by JS -->
     </div>
     <div class="timeline-closing">
       Reinvention isn't a detour. It's the pattern. <strong>The sixth stage is growth.</strong>
@@ -450,7 +463,6 @@
   </div>
 
   <script>
-    // THEME TOGGLE
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.getElementById('themeBtn').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
@@ -462,7 +474,6 @@
       document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
     }
 
-    // STARFIELD
     const starfield = document.getElementById('starfield');
     for (let i = 0; i < 60; i++) {
       const star = document.createElement('div');
@@ -476,10 +487,9 @@
       starfield.appendChild(star);
     }
 
-    // TIMELINE DATA — ordered chronologically by age
     const timelineEntries = [
       { age: 'Age 33', name: 'Judi Jakubowski', story: 'In her 30s, went back for her MBA while working full-time and raising a family. Studied nights and weekends for years to earn the degree.', you: true },
-      { age: 'Age 33', name: 'Judi Jakubowski', story: 'Also in her 30s: became one of the first remote workers at her Fortune 50 company, telecommuting in 1998 &mdash; before telecommuting was a thing.', you: true },
+      { age: '1998', name: 'Judi Jakubowski', story: 'Also in her 30s: became one of the first remote workers at her Fortune 50 company, telecommuting before telecommuting was a thing.', you: true },
       { age: 'Age 38', name: 'Ang Lee', story: 'After six years as a stay-at-home dad while his wife supported the family, he directed his first feature film. He would go on to win Best Director at the Oscars &mdash; twice.' },
       { age: 'Age 39', name: 'Toni Morrison', story: 'Published her first novel, The Bluest Eye, while working full-time as a book editor and raising two sons alone. She won the Nobel Prize in Literature 23 years later.' },
       { age: 'Age 40', name: 'Vera Wang', story: 'After failing to make the US Olympic figure skating team and years as a Vogue editor, she designed her own wedding dress at 40 &mdash; and launched a fashion empire.' },
@@ -487,12 +497,11 @@
       { age: 'Age 51', name: 'Katherine Johnson', story: 'Her NASA calculations were essential to the Apollo 11 moon landing in 1969. She had spent her career quietly doing the mathematical work that put astronauts in orbit &mdash; and on the moon.' },
       { age: 'Age 52', name: 'Ray Kroc', story: 'Bought the franchise rights to a small California burger joint called McDonald\'s. He had spent 30 years selling milkshake machines before that.' },
       { age: 'Age 55', name: 'Ronald Reagan', story: 'Elected Governor of California in his first political race, ending a Hollywood acting career that had lasted three decades. He would win the presidency at 69.' },
-      { age: 'Age 55+', name: 'Judi Jakubowski', story: 'After nearly 30 years at one company, laid off in a corporate restructuring. Within one year: passed the PMP exam with above-target scores in every domain, built two portfolio websites from scratch, taught herself Power BI and AI tools, launched a blog called The Reinvention Files, and began a Paralegal Certificate program.', you: true },
+      { age: 'In her 50s', name: 'Judi Jakubowski', story: 'After nearly 30 years at one company, laid off in a corporate restructuring. Within one year: passed the PMP exam with above-target scores in every domain, built two portfolio websites from scratch, taught herself Power BI and AI tools, launched a blog called The Reinvention Files, and began a Paralegal Certificate program.', you: true },
       { age: 'Age 62', name: 'Colonel Harland Sanders', story: 'Franchised Kentucky Fried Chicken after his roadside restaurant was bypassed by a new interstate and he lost everything. He had been fired from a dozen jobs before that.' },
       { age: 'Age 75', name: 'Nelson Mandela', story: 'Became the first Black president of South Africa, five years after being released from 27 years in prison. He was 71 when he walked free.' }
     ];
 
-    // BUILD TIMELINE
     const timelineContainer = document.getElementById('timelineContainer');
     timelineEntries.forEach((entry, index) => {
       const div = document.createElement('div');
@@ -508,12 +517,7 @@
       timelineContainer.appendChild(div);
     });
 
-    // INTERSECTION OBSERVER — fade cards in as they scroll into view
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -80px 0px',
-      threshold: 0.15
-    };
+    const observerOptions = { root: null, rootMargin: '0px 0px -80px 0px', threshold: 0.15 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -524,7 +528,6 @@
     }, observerOptions);
     document.querySelectorAll('.timeline-entry').forEach(el => observer.observe(el));
 
-    // CONSTELLATION DATA
     const nodes = [
       { id: 'gov1', label: 'Enterprise Governance Design', cluster: 'Governance & Compliance', desc: 'Designed scalable governance frameworks for portfolios processing 400+ initiatives annually across 10+ functional groups.', x: 140, y: 90 },
       { id: 'gov2', label: 'Contract Lifecycle Management', cluster: 'Governance & Compliance', desc: 'Governed 18-agreement supplier portfolio through full lifecycle: intake, review, approval, renewal, and amendment.', x: 70, y: 160 },
